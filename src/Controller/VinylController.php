@@ -5,10 +5,12 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+//use Twig\Environment;
 
 class VinylController extends AbstractController
 {
     #[Route('/', name: 'app_homepage')]
+//    public function homepage(Environment $twig): Response
     public function homepage(): Response
     {
 //        return new Response('Title: "PB and Jams"');
@@ -22,12 +24,17 @@ class VinylController extends AbstractController
             ['song' => 'Fantasy', 'artist' => 'Mariah Carey'],
         ];
 
-//        dump($tracks);
-
         return $this->render('vinyl/homepage.html.twig', [
             'title' => 'PB & Jams',
             'tracks' => $tracks,
         ]);
+
+        // for when you need to render outsite the controller
+//        $html = $twig->render('vinyl/homepage.html.twig', [
+//            'title' => 'PB & Jams',
+//            'tracks' => $tracks,
+//        ]);
+//        return new Response($html);
     }
 
     #[Route('/browse/{slug}', name: 'app_browse')]
