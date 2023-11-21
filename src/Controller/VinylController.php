@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class VinylController extends AbstractController
 {
-    #[Route('/')]
+    #[Route('/', name: 'app_homepage')]
     public function homepage(): Response
     {
 //        return new Response('Title: "PB and Jams"');
@@ -30,7 +30,7 @@ class VinylController extends AbstractController
         ]);
     }
 
-    #[Route('/browse/{slug}')]
+    #[Route('/browse/{slug}', name: 'app_browse')]
     public function browse(string $slug = null): Response
     {
         $genre = $slug ? \symfony\component\string\u(str_replace('-', ' ', $slug))->title(true) : null;
